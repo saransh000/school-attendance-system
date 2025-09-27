@@ -108,6 +108,58 @@ The application will be available at:
 - PUT `/api/classes/:id` - Update class
 - DELETE `/api/classes/:id` - Delete class
 
+## 🚀 Deployment
+
+### Vercel Deployment (Serverless Functions)
+
+This project is now optimized for Vercel's serverless architecture:
+
+1. **Connect to Vercel:**
+   ```bash
+   npm install -g vercel
+   vercel login
+   vercel --prod
+   ```
+
+2. **Configure Environment Variables in Vercel:**
+   - Go to your Vercel dashboard
+   - Navigate to your project settings
+   - Add the following environment variables:
+     - `MONGODB_URI`: Your MongoDB Atlas connection string
+     - `JWT_SECRET`: A secure random string for JWT signing
+     - `NODE_ENV`: production
+
+3. **API Architecture:**
+   - All API endpoints are now serverless functions in the `/api` directory
+   - Frontend is served as static files from the `/client/build` directory
+   - CORS is configured for cross-origin requests
+
+### Available Serverless Endpoints
+
+- `POST /api/auth/login` - User authentication
+- `POST /api/auth/register` - User registration
+- `GET /api/users/profile` - User profile and dashboard data
+- `GET /api/users/dashboard` - Dashboard statistics
+- `GET /api/classes` - Get classes (role-based)
+- `POST /api/classes` - Create new class
+- `GET /api/attendance` - Get attendance records
+- `POST /api/attendance` - Mark attendance
+- `GET /api/health` - Health check endpoint
+
+### MongoDB Atlas Setup
+
+1. **Create MongoDB Atlas Account:**
+   - Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Create a free account and cluster
+
+2. **Configure Database Access:**
+   - Create a database user
+   - Whitelist your IP address (or use 0.0.0.0/0 for all IPs)
+   - Get your connection string
+
+3. **Update Environment Variables:**
+   Replace the connection string in your `.env` file and Vercel settings.
+
 ## Contributing
 
 1. Fork the repository
