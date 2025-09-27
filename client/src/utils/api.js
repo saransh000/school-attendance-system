@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // Configure axios defaults based on environment
 const API_BASE_URL = process.env.NODE_ENV === 'production'
-  ? `${window.location.origin}/api`  // Use absolute URL in production
-  : 'http://localhost:5000/api';  // Local development
+  ? window.location.origin  // Don't add /api - Vercel functions handle this
+  : 'http://localhost:5000';  // Local development
 
 axios.defaults.baseURL = API_BASE_URL;
 
